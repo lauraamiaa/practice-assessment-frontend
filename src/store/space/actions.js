@@ -10,9 +10,26 @@ export const spacesFetched = (data) => {
 export const fetchSpaces = () => async (dispatch, getState) => {
   try {
     const response = await axios.get("http://localhost:4000/spaces");
-    // console.log(response.data);
 
     dispatch(spacesFetched(response.data));
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const storiesFetched = (data) => {
+  return {
+    type: "space/storiesFetched",
+    payload: data,
+  };
+};
+
+export const fetchStories = (space) => async (dispatch, getState) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:4000/stories/${space.id}`
+    );
+    dispatch(storiesFetched(response.data));
   } catch (e) {
     console.log(e);
   }
