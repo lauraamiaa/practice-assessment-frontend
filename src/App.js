@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Jumbotron } from "react-bootstrap";
 import "./App.css";
 
 import Navigation from "./components/Navigation";
@@ -11,15 +10,10 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Space from "./pages/Space";
+import MySpace from "./pages/MySpace";
 
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-
-const Other = () => (
-  <Jumbotron>
-    <h1>Other</h1>
-  </Jumbotron>
-);
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +31,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/spaces/:id" component={Space} />
-        <Route path="/other" component={Other} />
+        <Route path="/myspace" component={MySpace} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>

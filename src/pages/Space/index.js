@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import Storycard from "../../components/Storycard";
-import { fetchStories, spacesFetched } from "../../store/space/actions";
+import { fetchStories } from "../../store/space/actions";
 import { selectStories } from "../../store/space/selectors";
 
 export default function Space() {
