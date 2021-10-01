@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteStory } from "../../store/user/actions";
+import Button from "react-bootstrap/Button";
 
 export default function Space(props) {
   const dispatch = useDispatch();
@@ -17,9 +18,9 @@ export default function Space(props) {
           maxWidth: "100%",
         }}
       />
-      <button onClick={() => dispatch(deleteStory(props.id))}>
-        Delte this story
-      </button>
+      <Button onClick={() => dispatch(deleteStory(props.id))}>
+        Delete this story
+      </Button>
     </div>
   );
 }

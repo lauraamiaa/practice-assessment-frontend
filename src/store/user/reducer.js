@@ -19,6 +19,15 @@ export default (state = initialState, action) => {
     case TOKEN_STILL_VALID:
       return { ...state, ...action.payload };
 
+    case "user/storyCreated":
+      return {
+        ...state,
+        space: {
+          ...state.space,
+          stories: [...state.space.stories, action.payload],
+        },
+      };
+
     case "user/storiesDeleted": {
       console.log("id", action.payload);
       const id = action.payload;
