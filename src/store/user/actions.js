@@ -141,7 +141,6 @@ export const createStory = (data) => async (dispatch, getState) => {
   try {
     const reduxstate = getState();
     const token = reduxstate.user.token;
-    console.log(data.imageUrl, "imageUrl");
     const response = await axios.post(
       `http://localhost:4000/myspace`,
       {
@@ -154,6 +153,42 @@ export const createStory = (data) => async (dispatch, getState) => {
     );
     console.log(response);
     dispatch(storyCreated(response.data));
+    dispatch(
+      showMessageWithTimeout("success", false, "successfully posted!", 3500)
+    );
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const spaceUpdated = (data) => {
+  return {
+    type: "user/spaceUpdated",
+    payload: data,
+  };
+};
+
+export const updateSpace = (data) => async (dispatch, getState) => {
+  try {
+    const reduxstate = getState();
+    const token = reduxstate.user.token;
+    const spaceId = reduxstate.user.space.id;
+    const response = await axios.patch(
+      `http://localhost:4000/myspace`,
+      {
+        title: data.tile,
+        description: data.description,
+        backgroundColor: data.backgroundColor,
+        color: data.color,
+        spaceId,
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log(response);
+    dispatch(spaceUpdated(response.data));
+    dispatch(
+      showMessageWithTimeout("success", false, "successfully edited!", 3500)
+    );
   } catch (e) {
     console.log(e);
   }

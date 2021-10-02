@@ -4,6 +4,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   name: null,
   email: null,
+  space: null,
 };
 
 export default (state = initialState, action) => {
@@ -26,6 +27,12 @@ export default (state = initialState, action) => {
           ...state.space,
           stories: [...state.space.stories, action.payload],
         },
+      };
+
+    case "user/spaceUpdated":
+      return {
+        ...state,
+        space: { ...action.payload, stories: state.space.stories },
       };
 
     case "user/storiesDeleted": {
